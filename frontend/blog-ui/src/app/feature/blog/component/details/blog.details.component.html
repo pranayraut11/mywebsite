@@ -1,0 +1,16 @@
+ <!-- Main -->
+ <div id="main">
+
+    <!-- Post -->
+    <section class="post">
+        <header class="major">
+            <span class="date">{{blog.publishedDate}}</span>
+            <h1>{{blog.blogName}}<br/>
+            </h1>
+            <p>{{blog.blogSummary}}</p>
+        </header>
+        <div class="image main"><img src="{{blog.blogImage}}" alt=""/></div>
+        <div [innerHTML]="blog.blogData" ></div>
+    </section>
+
+</div>

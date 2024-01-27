@@ -1,0 +1,7 @@
+version: '3'
+services:
+  nginx:
+    image: pranayraut11/nginx
+    restart: always
+    ports:
+      - "80:80"
