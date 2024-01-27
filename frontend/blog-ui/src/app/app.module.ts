@@ -12,6 +12,8 @@ import { BlogListComponent } from './feature/blog/component/blog-list/blog.list.
 import { BlogDetailsComponent } from './feature/blog/component/details/blog.details.component';
 import { FeaturedblogComponent } from './feature/blog/component/featured-blog/featured-blog.component';
 import { FeaturedListBlogComponent } from './feature/blog/component/featured-list-blog/featured-list-blog.component';
+import { SimpleHeaderComponent } from './feature/layout/user/components/simple-header/simple-header.component';
+import { BlogDetailsPageComponent } from './feature/layout/user/pages/blog-details-page/blog-details-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { FeaturedListBlogComponent } from './feature/blog/component/featured-lis
     BlogListComponent,
     BlogDetailsComponent,
     FeaturedblogComponent,
-    FeaturedListBlogComponent
+    FeaturedListBlogComponent,
+    SimpleHeaderComponent,
+    BlogDetailsPageComponent
   ],
   imports: [
     BrowserModule,
