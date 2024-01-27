@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("blogs")
+@RequestMapping("/api/blogs")
 @CrossOrigin("*")
 public class BlogController {
 
