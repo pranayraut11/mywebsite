@@ -10,11 +10,11 @@ export class BlogRestService {
 
   getAllBlogs():Observable<any>{
     console.log("In service")
-   return this.http.get("http://localhost:8080/blogs");
+   return this.http.get("http://app:8080/blogs");
   }
 
   getBlog(id:any):Observable<any>{
     console.log("In service")
-   return this.http.get("http://localhost:8080/blogs/"+id);
+   return this.http.get("http://app:8080/blogs/"+id);
   }
 }

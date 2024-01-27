@@ -4,4 +4,10 @@ services:
     image: pranayraut11/nginx
     restart: always
     ports:
-      - "80:80"
+      - 80:80
+      
+  app:
+    container_name: app
+    image: pranayraut11/samplejavawebsite
+    expose:
+      - 8080    
