@@ -1,13 +1,15 @@
 <section class="posts">
     <article *ngFor="let blog of blogs">
-        <header>
-            <span class="date">{{blog.publishedDate}}</span>
-            <h2><a href="#">{{blog.blogName}}</a></h2>
-        </header>
-        <a href="#" class="image fit"><img src="{{blog.blogImage}}" alt="" /></a>
-        <p>{{blog.blogSummary}}</p>
-        <ul class="actions special">
-            <li><a (click)="gotoBlogDetails(blog.id)" class="button">Full Story</a></li>
-        </ul>
+        <a (click)="gotoBlogDetails(blog.id)">
+            <header>
+                <span class="date">{{blog.publishedDate}}</span>
+                <h2><a >{{blog.blogName}}</a></h2>
+            </header>
+            <a class="image fit"><img src="{{blog.blogImage}}" alt="" /></a>
+            <p>{{blog.blogSummary}}</p>
+            <ul class="actions special">
+                <li><a class="button">Full Story</a></li>
+            </ul>
+        </a>
     </article>
 </section>

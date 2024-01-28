@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Blog Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        /* Add styles for the modal button */
+        .modal button {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Function to validate the form fields
+            function validateForm() {
+                var isValid = true;
+
+                // Reset previous error messages
+                $('form .error').text('');
+
+                // Validate Blog Title
+                var blogName = $('#blogName').val();
+                if (blogName === '') {
+                    $('#blogNameError').text('Please enter a blog title.');
+                    isValid = false;
+                }
+
+                // Validate Blog Summary
+                var blogSummary = $('#blogSummary').val();
+                if (blogSummary === '') {
+                    $('#blogSummaryError').text('Please enter a blog summary.');
+                    isValid = false;
+                }
+
+                // Validate Publisher Name
+                var blogAuthor = $('#blogAuthor').val();
+                if (blogAuthor === '') {
+                    $('#blogAuthorError').text('Please enter a publisher name.');
+                    isValid = false;
+                }
+
+
+                // Validate Blog Content
+                var blogData = $('#blogData').val();
+                if (blogData === '') {
+                    $('#blogDataError').text('Please enter blog content.');
+                    isValid = false;
+                }
+
+                // Validate Image URL
+                var blogImage = $('#blogImage').val();
+                if (blogImage === '' || !isValidUrl(blogImage)) {
+                    $('#blogImageError').text('Please enter a valid image URL.');
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            // Function to check if a string is a valid URL
+            function isValidUrl(url) {
+                // Regular expression to check if the URL is valid
+                var urlPattern = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
+                return urlPattern.test(url);
+            }
+
+            // Disable submit button initially
+            $('#formButton').prop('disabled', true);
+
+            // Enable/disable submit button based on form validation
+            $('form').on('input', 'input, textarea', function () {
+                $('#formButton').prop('disabled', !validateForm());
+            });
+            // Submit form on button click
+            $('#formButton').click(function (e) {
+               
+                    e.preventDefault(); // Prevent form submission if validation fails
+                    console.log("data is valid");
+                    if (validateForm()) {
+                        // Collect form data
+                        var formData = {
+                            blogName: $('#blogName').val(),
+                            blogSummary: $('#blogSummary').val(),
+                            blogAuthor: $('#blogAuthor').val(),
+                            blogData: $('#blogData').val(),
+                            blogImage: $('#blogImage').val()
+                        };
+
+                        // Convert form data to JSON
+                        var jsonData = JSON.stringify(formData);
+                        console.log(jsonData);
+                        // Submit data using AJAX
+                        $.ajax({
+                            url: '/blog/create', // Change to your server script URL
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: jsonData,
+                            success: function (response) {
+                                // Handle success response
+                                showModal('Blog Submitted Successfully!');
+                            },
+                            error: function (error) {
+                                // Handle error
+                                console.error(error);
+                            }
+                        });
+                    }
+                
+            });
+            function showModal(message) {
+                $('.modal').html('<p>' + message + '</p><button onclick="closeModal()">OK</button>').show();
+            }
+
+            // Function to close the modal
+            window.closeModal = function () {
+                $('.modal').hide();
+            };
+        });
+    </script>
+</head>
+
+<body>
+
+    <form >
+        <label for="blogName">Blog Title:</label>
+        <input type="text" id="blogName" name="blogName" required>
+        <span class="error" id="blogNameError"></span>
+
+        <label for="blogSummary">Blog Summary:</label>
+        <textarea id="blogSummary" name="blogSummary" rows="4" required></textarea>
+        <span class="error" id="blogSummaryError"></span>
+
+        <label for="blogAuthor">Publisher Name:</label>
+        <input type="text" id="blogAuthor" name="blogAuthor" required>
+        <span class="error" id="blogAuthorError"></span>
+
+        <label for="blogData">Blog Content:</label>
+        <textarea id="blogData" name="blogData" rows="8" required></textarea>
+        <span class="error" id="blogDataError"></span>
+
+        <label for="blogImage">Image URL:</label>
+        <input type="url" id="blogImage" name="blogImage" placeholder="https://example.com/image.jpg" required>
+        <span class="error" id="blogImageError"></span>
+
+        <button type="submit" id="formButton" >Submit Post</button>
+    </form>
+    <div class="modal"></div>
+
+</body>
+
+</html>

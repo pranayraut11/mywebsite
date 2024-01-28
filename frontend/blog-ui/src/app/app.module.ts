@@ -7,13 +7,14 @@ import { HomeComponent } from './feature/layout/user/pages/home/home.component';
 import { HeaderComponent } from './feature/layout/user/components/header/header.component';
 import { FooterComponent } from './feature/layout/user/components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CreateComponent } from './feature/blog/component/create/create.component';
+import { CreateBlogComponent} from './feature/blog/component/create-blog/create-blog.component';
 import { BlogListComponent } from './feature/blog/component/blog-list/blog.list.component';
 import { BlogDetailsComponent } from './feature/blog/component/details/blog.details.component';
 import { FeaturedblogComponent } from './feature/blog/component/featured-blog/featured-blog.component';
 import { FeaturedListBlogComponent } from './feature/blog/component/featured-list-blog/featured-list-blog.component';
 import { SimpleHeaderComponent } from './feature/layout/user/components/simple-header/simple-header.component';
 import { BlogDetailsPageComponent } from './feature/layout/user/pages/blog-details-page/blog-details-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { BlogDetailsPageComponent } from './feature/layout/user/pages/blog-detai
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    CreateComponent,
+    CreateBlogComponent,
     BlogListComponent,
     BlogDetailsComponent,
     FeaturedblogComponent,
@@ -31,7 +32,7 @@ import { BlogDetailsPageComponent } from './feature/layout/user/pages/blog-detai
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,HttpClientModule
+    AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,37 +1,25 @@
 <html lang="en">
-
 <head>
     <title>This is Story</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
 </head>
-
 <body class="is-preload">
-
-
-
     <!-- Wrapper -->
     <div id="wrapper" class="fade-in">
-
         <!-- Intro -->
         <div id="intro">
             <h1>This is<br />
                 Story</h1>
-
             <ul class="actions">
-                <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+                <li><a (click)="scrollTo('headerscroll')" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
             </ul>
         </div>
-
-        <app-header></app-header>
-
+        <app-header ></app-header>
         <!-- Main -->
-        <div id="main">
-         
-            <!-- Posts -->
+        <div id="main" class="headerscroll">
+         <!-- Posts -->
            <app-featured-list-blog></app-featured-list-blog>
-
             <!-- Footer -->
             <footer>
                 <div class="pagination">
@@ -46,13 +34,8 @@
                     <a href="#" class="next">Next</a>
                 </div>
             </footer>
-
         </div>
         <app-footer></app-footer>
-
-
     </div>
-
 </body>
-
 </html>
