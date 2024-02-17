@@ -8,13 +8,17 @@ export class BlogRestService {
 
   constructor(private http: HttpClient) { }
 
-  getAllBlogs():Observable<any>{
+  getAllBlogs(pageNumber:number,pageSize:number):Observable<any>{
     console.log("In service")
-   return this.http.get("http://www.pranayraut.in/api/blogs");
+   return this.http.get("http://localhost:8080/api/blogs?pageNumber="+pageNumber+"&pageSize="+pageSize);
   }
 
   getBlog(id:any):Observable<any>{
     console.log("In service")
-   return this.http.get("http://www.pranayraut.in/api/blogs/"+id);
+   return this.http.get("http://localhost:8080/api/blogs/"+id);
+  }
+
+  createBlog(blog:any){
+   return this.http.post("http://localhost:8080/api/blogs",blog);
   }
 }

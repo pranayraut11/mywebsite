@@ -61,7 +61,7 @@
 
                     <div class="col-12">
                         <ul class="actions">
-                            <li> <input type="submit" id="formButton" class="primary" value="Submit Post" /></li>
+                            <li> <input type="submit" [disabled]="!(formData.valid && formData.dirty)" id="formButton" class="primary" value="Submit Post" /></li>
 
                             <li><input type="reset" value="Reset" /></li>
                         </ul>

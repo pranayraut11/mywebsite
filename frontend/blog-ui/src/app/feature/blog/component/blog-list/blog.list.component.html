@@ -3,7 +3,7 @@
         <a (click)="gotoBlogDetails(blog.id)">
             <header>
                 <span class="date">{{blog.publishedDate}}</span>
-                <h2><a >{{blog.blogName}}</a></h2>
+                <h2><a>{{blog.blogName}}</a></h2>
             </header>
             <a class="image fit"><img src="{{blog.blogImage}}" alt="" /></a>
             <p>{{blog.blogSummary}}</p>
@@ -12,4 +12,22 @@
             </ul>
         </a>
     </article>
+    <!-- Footer -->
+    
 </section>
+<div class="row">
+   
+    <div class="col-12 " style="text-align: center;" >
+        <hr/>
+        <div class="pagination" >
+            <a (click)="previousPage()" *ngIf="!isFirstPage" class="previous">Prev</a>
+            <div *ngFor="let in of counter(totalPages) ;let i = index">
+                <a (click)="selectPage(i)" [ngClass]="{'active' : selectedPageNumber == i}" class="page ">{{i+1}}</a>
+            </div>
+           
+           
+            <a (click)="nextPage()" *ngIf="!isLastPage" class="next">Next</a>
+        </div>
+    </div>
+    
+</div>

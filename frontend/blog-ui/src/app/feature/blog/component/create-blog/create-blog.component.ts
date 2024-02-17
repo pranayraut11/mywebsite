@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { BlogRestService } from 'src/app/rest-services/blog-rest.service';
 
 @Component({
   selector: 'app-create-blog',
@@ -9,7 +10,7 @@ import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angula
 export class CreateBlogComponent implements OnInit {
   formData: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private blogRestService : BlogRestService) {
     this.formData = this.fb.group({
       "blogName": new FormControl("", Validators.required),
       "blogSummary": new FormControl("", Validators.required),
@@ -23,5 +24,9 @@ export class CreateBlogComponent implements OnInit {
 
   saveBlog(){
     console.log(this.formData.value);
+    this.blogRestService.createBlog(this.formData.value).subscribe(response=>{
+      console.log(response);
+
+    })
   }
 }
