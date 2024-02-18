@@ -1,4 +1,4 @@
-package com.mywebsite.sample.entity;
+package com.mywebsite.blog.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

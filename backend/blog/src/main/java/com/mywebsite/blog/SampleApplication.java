@@ -1,9 +1,11 @@
-package com.mywebsite.sample;
+package com.mywebsite.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication
+
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class SampleApplication {
 
 	public static void main(String[] args) {

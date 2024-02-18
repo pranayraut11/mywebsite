@@ -1,4 +1,4 @@
-package com.mywebsite.sample.config;
+package com.mywebsite.blog.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

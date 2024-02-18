@@ -1,7 +1,7 @@
-package com.mywebsite.sample.controller;
+package com.mywebsite.blog.controller;
 
-import com.mywebsite.sample.entity.BlogEntity;
-import com.mywebsite.sample.repository.BlogRepository;
+import com.mywebsite.blog.entity.BlogEntity;
+import com.mywebsite.blog.repository.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,6 +1,6 @@
-package com.mywebsite.sample.repository;
+package com.mywebsite.blog.repository;
 
-import com.mywebsite.sample.entity.BlogEntity;
+import com.mywebsite.blog.entity.BlogEntity;
 import jdk.jfr.Registered;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
