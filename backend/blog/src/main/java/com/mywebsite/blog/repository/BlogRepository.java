@@ -5,8 +5,9 @@ import jdk.jfr.Registered;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-@Registered
+@Repository
 public interface BlogRepository extends CrudRepository<BlogEntity,String> {
     Page<BlogEntity> findAll(Pageable pageable);
 }

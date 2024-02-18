@@ -1,4 +1,4 @@
-package com.mywebsite.blog.dto;
+package com.mywebsite.common.security.dto;
 
 import lombok.Builder;
 import lombok.Data;

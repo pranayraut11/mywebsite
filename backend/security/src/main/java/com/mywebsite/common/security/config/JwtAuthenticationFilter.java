@@ -1,7 +1,7 @@
-package com.mywebsite.blog.config;
+package com.mywebsite.common.security.config;
 
-import com.mywebsite.blog.security.JWTService;
-import com.mywebsite.blog.security.UserService;
+import com.mywebsite.common.security.services.JWTService;
+import com.mywebsite.common.security.services.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

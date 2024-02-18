@@ -1,9 +1,11 @@
-package com.mywebsite.blog.config;
+package com.mywebsite.common.security.config;
 
-import com.mywebsite.blog.security.UserService;
+import com.mywebsite.common.security.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -16,16 +18,26 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig  {
+
+    @Value("${allowed.paths}")
+    private String[] allowedUrls;
+
+    @Autowired
     private  JwtAuthenticationFilter jwtAuthenticationFilter;
-    private  UserService userService;
+
+    @Autowired
+    private UserService userService;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request.requestMatchers(HttpMethod.GET,"/api/blogs/**","/api/login")
+                .authorizeHttpRequests(request -> request.requestMatchers(requestUrl -> Arrays.stream(allowedUrls).anyMatch(url->url.equals(requestUrl.getRequestURI())))
                         .permitAll().anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(

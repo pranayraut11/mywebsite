@@ -1,4 +1,4 @@
-package com.mywebsite.blog.security;
+package com.mywebsite.common.security.services;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

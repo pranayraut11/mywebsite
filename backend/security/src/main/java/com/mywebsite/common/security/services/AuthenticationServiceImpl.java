@@ -1,14 +1,15 @@
-package com.mywebsite.blog.security;
+package com.mywebsite.common.security.services;
 
-import com.mywebsite.blog.dto.JwtAuthenticationResponse;
-import com.mywebsite.blog.dto.SignUpRequest;
-import com.mywebsite.blog.dto.SigninRequest;
-import com.mywebsite.blog.entity.User;
-import com.mywebsite.blog.mapper.UserMapper;
-import com.mywebsite.blog.repository.UserRepository;
+import com.mywebsite.common.security.constants.enums.Role;
+import com.mywebsite.common.security.dto.JwtAuthenticationResponse;
+import com.mywebsite.common.security.dto.SignUpRequest;
+import com.mywebsite.common.security.dto.SigninRequest;
+import com.mywebsite.common.security.entity.User;
+import com.mywebsite.common.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,16 +25,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private JWTService service;
 
     @Autowired
-    private UserMapper userMapper;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public JwtAuthenticationResponse signup(SignUpRequest request) throws Exception {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new Exception("Username already exist.");
         }
-        User user = userRepository.save(userMapper.toUser(request));
-        String token = service.generateToken(user);
-        return JwtAuthenticationResponse.builder().token(token).build();
+        var user = User.builder().email(request.getEmail()).role(Role.USER).
+                firstName(request.getFirstName()).lastName(request.getLastName()).password(passwordEncoder.encode(request.getPassword())).build();
+        userRepository.save(user);
+        return JwtAuthenticationResponse.builder().token(service.generateToken(user)).build();
     }
 
     @Override

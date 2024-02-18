@@ -1,6 +1,6 @@
-package com.mywebsite.blog.entity;
+package com.mywebsite.common.security.entity;
 
-import com.mywebsite.blog.constants.enums.Role;
+import com.mywebsite.common.security.constants.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,11 +1,10 @@
-package com.mywebsite.blog;
+package com.mywebsite.common.security;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SampleApplicationTests {
-
+class SecurityApplicationTests {
 
 
 }

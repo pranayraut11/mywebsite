@@ -1,6 +1,6 @@
-package com.mywebsite.blog.repository;
+package com.mywebsite.common.security.repository;
 
-import com.mywebsite.blog.entity.User;
+import com.mywebsite.common.security.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
